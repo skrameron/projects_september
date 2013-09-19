@@ -10,30 +10,40 @@ void upper(string input);
 
 int main()//no semi colon needed unless its the end of a function
 {
+    int tries = 0;
+    bool first = true;
 	string input, selection;
 	cout << "Welcome to editor. Please enter your first sentence or *quit* to end." << endl;
-	getline(cin, input);
-	cout << "Please choose an editing operation:\nH to replace all characters x with characters y\nR      to reverse the sentence\nU to change the sentence to upper case." << endl;
-	
-	cout << "Please use H, R or U to specify the editing choice. Please try again." << endl;
-	getline(cin, selection);
-
-	if (selection[0] == 'H')
-	{
-		replace(input);
-    }
-    else if (selection[0] == 'R')
+    while (true)
     {
-        reverse(input);
+        if (first)
+            first = false;
+        else
+            cout << "Please enter your next sentence or *quit* to end." << endl;
+        getline(cin, input);
+        if (input == "quit")
+            return 0;
+        cout << "Please choose an editing operation:\nH to replace all characters x with characters y\nR to reverse the sentence\nU to change the sentence to upper case." << endl;
+        getline(cin, selection);
+        if (selection[0] == 'H')
+            replace(input);
+        else if (selection[0] == 'R')
+            reverse(input);
+        else if (selection[0] == 'U')
+            upper(input);
+        else if (selection == "quit")
+            return 0;
+        else
+        {
+            tries++;
+            cout << "Please use H, R or U to specify the editing choice. Please try again." << endl;
+            if (tries == 3)
+            {
+               // returns an error
+               return 1;
+            }
+        }
     }
-    else if (selection[0] == 'U')
-    {
-        upper(input);
-    }
-    cout << "Please enter next sentence or *quit* to end." << endl;
-	
-	return 0;
-
 }
 
 void replace(string input)
@@ -48,9 +58,7 @@ void replace(string input)
     for(int i = 0; i < input.length(); i++)
 	{
 		if  (input[i] == original[0])
-		{
 			input[i] = replacement[0];
-		}
 	}
 	cout << input << endl;
 	return;
