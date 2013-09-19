@@ -67,6 +67,12 @@ void reverse(string input)
 }
 
 void upper(string input)
-{
-	return;
+{    
+    for(int i = 0; i < input.length(); i++)
+    {
+        input[i] = toupper(input[i]);
+        cout << input[i];
+    }
+    cout << endl;
+    return;
 }
