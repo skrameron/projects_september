@@ -1,11 +1,13 @@
-#include<iostream>
-#include<string>
-#include<cctype>
+#include <iostream>
+#include <string>
+#include <cctype>
+
 using namespace std;
 
 void str_to_upper(string &s);
 void reverse(string &s);
 void replace(string &s, char x, char y);
+void replace(string &s, string target, string replacement);
 
 int main()
 {
@@ -13,7 +15,8 @@ int main()
     cout << "Welcome to editor. Please enter your first sentence or *quit* to end." << endl;
     getline(cin, s);
 
-    while(s != "quit"){
+    while(s != "quit")
+    {
         cout << "Please choose an editing operation:"
              << "\nH to replace all characters x with characters y"
              << "\nR to reverse the sentence"
@@ -23,7 +26,8 @@ int main()
         cin >> inp;
         cin.ignore();
         int counter = 1;
-        while(inp != 'H' && inp != 'R' && inp != 'U'){
+        while(inp != 'H' && inp != 'R' && inp != 'U' && inp != 'S' )
+        {
             if(counter >= 3)
             {
                 return 0;
@@ -35,36 +39,35 @@ int main()
         }//while
         switch(inp)
         {
-        case 'H':
-            cout << "Please enter the first character:" << endl;
-            char x, y;
-            cin >> x;
-            cout << "Please enter the second character" ;
-            cin >> y;
-            cin.ignore();
-            replace(s, x, y);
-            cout << s << endl;
-        break;
-        case 'R':
-            reverse(s);
-            cout << s << endl;
-        break;
-        case 'U':
-            str_to_upper(s);
-            cout << s << endl;
+            case 'H':
+                cout << "Please enter the first character:" << endl;
+                char x, y;
+                cin >> x;
+                cout << "Please enter the second character" ;
+                cin >> y;
+                cin.ignore();
+                replace(s, x, y);
+                cout << s << endl;
+            break;
+            case 'R':
+                reverse(s);
+                cout << s << endl;
+            break;
+            case 'U':
+                str_to_upper(s);
+                cout << s << endl;
+            break;
+            case 'S':
+                string target;
+                string replacement;
+                cout << "Please enter the first substring" << endl;
+                getline(cin, target);
+                cout << "Please enter the second substring" << endl;
+                getline(cin, replacement);
+                replace(s, target, replacement);
+                cout << endl;
+            break;
         }
-        /*
-        case 'S':
-            string one;
-            string two;
-            cout << "Please enter the first substring" << endl;
-            getline(cin, one);
-            cout << "Please enter the second substring" << endl;
-            getline(cin, two);
-            replace(s, one, two);
-            cout << endl;
-         //end of switch
-        */
         cout << "Please enter next sentence or *quit* to end." << endl;
         getline(cin, s);
     }//while
@@ -72,32 +75,36 @@ int main()
     return 0;
 }
 
-void str_to_upper(string &s){
-    for(int i = 0; i < s.length(); i++){
-            s[i] = toupper(s[i]);
-        }//for
-}//str_to_upper()
-
-void replace(string &s, char x, char y){
-    for(int i = 0; i < s.length(); i++){
-            if(s[i] == x)
-                    s[i] = y;
-        }//for
-}//replace()
-/*
-void replace(string &s, string over, string load)
+void str_to_upper(string &s)
 {
     for(int i = 0; i < s.length(); i++)
     {
-        if(s[i] == over[i])
-        i++;
-        char temp = over[i];
-    }
+        s[i] = toupper(s[i]);
+    }//for
+}//str_to_upper()
 
+void replace(string &s, char x, char y)
+{
+    for(int i = 0; i < s.length(); i++)
+    {
+        if(s[i] == x)
+            s[i] = y;
+    }//for
+}//replace()
+
+void replace(string &s, string target, string replacement)
+{
+    for(int i = 0; i < s.length(); i++)
+    {
+    }
+    cout << target << endl;
+    cout << replacement << endl;
 }
-*/
-void reverse(string &s){
-    for( int i=0, j=s.length()-1; i < j; i++, j--){
+
+void reverse(string &s)
+{
+    for( int i=0, j=s.length()-1; i < j; i++, j--)
+    {
         char temp = s[i];
         s[i] = s[j];
         s[j] = temp;
