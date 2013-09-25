@@ -8,6 +8,7 @@ void str_to_upper(string &s);
 void reverse(string &s);
 void replace(string &s, char x, char y);
 void replace(string &s, string target, string replacement);
+void find(string s, string target);
 
 int main()
 {
@@ -83,20 +84,36 @@ void str_to_upper(string &s)
     }//for
 }//str_to_upper()
 
+//this will return a pointer to the first ARRAYA
+int possible_matches(string s, string target)
+{
+    if(s.length() < target.length())
+        return 0;
+    return (s.length() - target.length() + 1);
+}
+
+int* find(string s, string target)
+{
+    for(int i = 0; i <= s.length() - target.length(); i++)
+    {
+        string current = s.substr(i, target.length());
+        if (current == sub)
+            cout << i << endl;
+    }
+    return;
+}
+
 void replace(string &s, char x, char y)
 {
     for(int i = 0; i < s.length(); i++)
     {
-        if(s[i] == x)
+        if (s[i] == x)
             s[i] = y;
     }//for
 }//replace()
 
 void replace(string &s, string target, string replacement)
 {
-    for(int i = 0; i < s.length(); i++)
-    {
-    }
     cout << target << endl;
     cout << replacement << endl;
 }
