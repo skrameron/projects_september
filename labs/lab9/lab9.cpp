@@ -33,7 +33,7 @@ int main()
             {
                 return 0;
             }//if
-            cout << "Please use H, R or U to specify the editing choice. Please try again." << endl;
+            cout << "Please use H, R, U, or S to specify the editing choice. Please try again." << endl;
             counter++;
             cin >> inp;
             cin.ignore();
@@ -65,7 +65,9 @@ int main()
                 getline(cin, target);
                 cout << "Please enter the second substring" << endl;
                 getline(cin, replacement);
-                replace(s, target, replacement);
+                //replace(s, target, replacement);
+                find(s, target);
+                //replace(s, target, replacement);
                 cout << endl;
             break;
         }
@@ -92,32 +94,38 @@ int possible_matches(string s, string target)
     return (s.length() - target.length() + 1);
 }
 
-int* find(string s, string target)
-{
-    for(int i = 0; i <= s.length() - target.length(); i++)
-    {
-        string current = s.substr(i, target.length());
-        if (current == sub)
-            cout << i << endl;
-    }
-    return;
-}
-
 void replace(string &s, char x, char y)
 {
     for(int i = 0; i < s.length(); i++)
     {
         if (s[i] == x)
             s[i] = y;
-    }//for
-}//replace()
+    }
+}
 
 void replace(string &s, string target, string replacement)
 {
-    cout << target << endl;
-    cout << replacement << endl;
-}
+    string before = s.substr(s.length, target.length);
+    string after = s.substr(start_after, len_after);
 
+    for(int i = 0; i <= s.length() - target.length(); i++)
+    {
+        string current  = s.substr(i, target.length());
+        if(current == target)
+        {
+            start_before = 0;
+            start_after = target.length() + i;
+            len_before = target[0];  
+            len_after = len_before  
+            before = s.substr(start_before, len_before);
+            after = s.substr(start_after, len_after);
+            s = before + replacement + after;
+            i = i + replacement.length() - 1;
+        }
+        cout << s;
+    }
+}
+*/
 void reverse(string &s)
 {
     for( int i=0, j=s.length()-1; i < j; i++, j--)
