@@ -78,12 +78,29 @@ int total_elements(vector< vector<int> > v ){
 }
 
 void print_array( int *ptr, int rows, int col)
-{
-   // for(int i = 0; i < col; i++)
-   // *ptr = &col[0];
-   //{
+{    
+    for(int j = 0; j < rows; j++){
+        for(int i = 0; i < col; i++){
+            cout << ptr[0] << " ";
+            ptr++;
+        
+        }
+        cout << endl;
+    }
 
-   //}
-      cout << &ptr[0][0];
+    /*
+       cout << ptr[0];
+       ptr++;
+       cout << " ";
+       cout << ptr[0];
+       ptr++;
+       cout << endl;
+       cout << ptr[0];
+       ptr++;
+       cout << " ";
+       cout << ptr[0];
+       ptr++;
+       cout << endl;
+    */
 }//print_array
 
