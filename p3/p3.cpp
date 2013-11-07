@@ -72,6 +72,10 @@ void print_sorted_positions(vector<subject> subs)
 
 void print_number_of_names(vector<subject> subs)
 {
+    ofstream outf;
+    string output = "distinct_count.txt";
+    outf.open(output.c_str() );
+
     vector<subject> sub_counts;
     for(int i = 0; i < subs.size(); i++){
         //havent found a match
@@ -90,8 +94,10 @@ void print_number_of_names(vector<subject> subs)
         }
     }
     for(int k = 0; k < sub_counts.size(); k++){
-        cout << setw(20);
-        cout << sub_counts[k].name << string(6,' ') << sub_counts[k].position << endl;
+        outf << setw(20) << sub_counts[k].name << string(6,' ')
+             << sub_counts[k].position << endl;
+      //  cout << setw(20);
+        //cout << sub_counts[k].name << string(6,' ') << sub_counts[k].position << endl;
     }
 }
 
