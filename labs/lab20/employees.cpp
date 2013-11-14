@@ -26,9 +26,11 @@ int main()
     out.open(output.c_str() );
 
     inf.open("employees.txt");
+    /*
     string s;
     while(getline(inf, s)){
         istringstream(s);
+        */
         while(!inf.eof()){
             employee emp;
             inf >> emp.last;
@@ -36,10 +38,11 @@ int main()
             inf >> emp.salary;
             employees.push_back(emp);
     }
-    }
     double_salary(employees);
     change_salary(employees);
     print(employees, out);
+
+    inf.close();
 
     return 0;
 }
@@ -58,28 +61,24 @@ void change_salary( vector< employee > &employees)
     string firstn;
     double salaryn;
 
-    cout << "enter last name" << " " << endl;
-    cin >> lastn;
-    cout << "enter first name" << " " << endl;
-    cin >> firstn;
+    cout << "enter last name, first name, and new salary" << " " << endl;
+    cin >> lastn >> firstn >> salaryn;
 
     for(int i = 0; i < employees.size(); i++){
-        if((lastn == employees[i].last) && firstn == employees[i].first){
-            cout << "enter new salary" << " " << endl;
-            cin >> salaryn;
+        if((employees[i].last == lastn) && (employees[i].first == firstn)){
             employees[i].salary = salaryn;
         }
-        cout << employees[i].salary << endl;
     }
 }
 
 
 void print( vector< employee > employees, ofstream &out)
 {
-    employee *ptr;
+    employee *ptr = &employees[0];
 
     for(int i = 0; i < employees.size(); i++){
-        ptr->last[i]->first[i]->salary[i];
+        out << setw(15) << std::right << ptr->last << ptr->first << ptr->salary << endl;
+        ptr ++;
         }
 }
 
